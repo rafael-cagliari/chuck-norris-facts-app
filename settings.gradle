@@ -1,0 +1,4 @@
+rootProject.name = "Chuck Norris Facts"
+include ':app'
+include ':data'
+include ':domain'
