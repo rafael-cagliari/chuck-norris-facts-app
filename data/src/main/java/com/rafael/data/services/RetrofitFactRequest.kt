@@ -4,15 +4,16 @@ import com.rafael.data.model.ChuckNorrisResponse
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
-interface RetrofitChuckNorrisFactRequest {
+interface RetrofitFactRequest {
 
     @GET("random")
-    fun getRandomFact(): Single<ChuckNorrisResponse>
+    fun getFact(): Single<ChuckNorrisResponse>
 
-    @GET("{category}")
-    fun getRandomFilteredFact(
-        @Path("category") category: String
+    @GET("random")
+    fun getFilteredFact(
+        @Query("category") category: String
     ): Single<ChuckNorrisResponse>
 
 }
