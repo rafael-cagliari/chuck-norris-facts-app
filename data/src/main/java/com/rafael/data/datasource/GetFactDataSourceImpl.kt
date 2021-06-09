@@ -1,5 +1,6 @@
 package com.rafael.data.datasource
 
+import com.rafael.data.model.ChuckNorrisFactDBItem
 import com.rafael.data.model.ChuckNorrisResponse
 import com.rafael.data.network.RetrofitInstance
 import io.reactivex.Single

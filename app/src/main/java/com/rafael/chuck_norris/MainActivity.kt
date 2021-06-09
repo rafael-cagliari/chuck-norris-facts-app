@@ -2,17 +2,21 @@ package com.rafael.chuck_norris
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.provider.Settings
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.rafael.data.datasource.AddFactToDBDataSourceImpl
 import com.rafael.data.datasource.GetFactDataSourceImpl
 import com.rafael.data.datasource.GetFilteredFactDataSource
 import com.rafael.data.datasource.GetFilteredFactDataSourceImpl
 import com.rafael.data.network.RetrofitInstance
+import com.rafael.data.persistance.FactsDataBase
+import com.rafael.data.repository.AddFactToDBRepositoryImpl
 import com.rafael.data.repository.GetFactRepositoryImpl
 import com.rafael.data.repository.GetFilteredFactRepositoryImpl
-import com.rafael.domain.usecase.GetFactUseCaseImpl
-import com.rafael.domain.usecase.GetFilteredFactUseCase
-import com.rafael.domain.usecase.GetFilteredFactUseCaseImpl
+import com.rafael.domain.model.ChuckNorrisFact
+import com.rafael.domain.usecase.*
+import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -22,6 +26,14 @@ class MainActivity() : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         getFact()
         getFilteredFact("dev")
+
+        val testFact = ChuckNorrisFact(
+            id = "asdgç4561",
+            categories = listOf("food"),
+            value = "chuck norris is da best"
+        )
+
+        Single.just(addFactToDB(testFact))
     }
 
     @SuppressLint("CheckResult")
@@ -56,4 +68,9 @@ class MainActivity() : AppCompatActivity() {
                 })
     }
 
+  fun addFactToDB(fact: ChuckNorrisFact){
+        AddFactToDBUseCaseImpl(
+            AddFactToDBRepositoryImpl(
+                AddFactToDBDataSourceImpl(FactsDataBase.getDatabase(applicationContext).factsDao()))).addFactToDB(fact)
+    }
 }
