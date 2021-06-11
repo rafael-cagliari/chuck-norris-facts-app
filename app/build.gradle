@@ -10,6 +10,9 @@ apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
+    viewBinding {
+        enabled = true
+    }
 
     defaultConfig {
         applicationId "com.rafael.chuck_norris"
@@ -39,6 +42,8 @@ android {
 
 
 dependencies {
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
     def room_version = "2.3.0"
 
     implementation "androidx.room:room-runtime:$room_version"
