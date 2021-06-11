@@ -1,13 +1,13 @@
 package com.rafael.data.repository
 
 
-import com.rafael.data.datasource.AddFactToDBDataSource
+import com.rafael.data.datasource.DataBaseDataSource
 import com.rafael.data.model.ChuckNorrisFactDBItem
 import com.rafael.domain.model.ChuckNorrisFact
-import com.rafael.domain.repository.AddFactToDBRepository
+import com.rafael.domain.repository.DataBaseRepository
 import io.reactivex.Single
 
-class AddFactToDBRepositoryImpl(val datasource:AddFactToDBDataSource):AddFactToDBRepository {
+class DataBaseRepositoryImpl(val datasource:DataBaseDataSource):DataBaseRepository {
     override fun addFactToDB(fact:ChuckNorrisFact):Single<Long> {
         
         val convertedFactDB =
@@ -19,5 +19,13 @@ class AddFactToDBRepositoryImpl(val datasource:AddFactToDBDataSource):AddFactToD
             )
         
         return datasource.addFactToDB(convertedFactDB)
+    }
+
+    override fun deleteFactFromDB(id: String): Single<Int> {
+       return datasource.deleteFactFromDB(id)
+    }
+
+    override fun readAllDB(): Single<List<ChuckNorrisFact>> {
+        return datasource.readAllDB()
     }
 }

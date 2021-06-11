@@ -25,12 +25,14 @@ class FactsListFragment() : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+     factListViewModel?.readAllDB()
         binding?.testButton?.setOnClickListener {
             factListViewModel?.getFact()
+            factListViewModel?.getFilteredFact("dev")
         }
         binding?.addToDbButton?.setOnClickListener {
             factListViewModel?.retrievedFact?.let { it1 -> factListViewModel?.addFactToDB(it1) }
         }
+        factListViewModel?.deleteFactFromDB("O5dJZQC-S3KReemxLiD4Zw")
     }
     }

@@ -10,4 +10,8 @@ class GetFactRepositoryImpl(val datasource: GetFactDataSourceImpl
     override fun getFact(): Single<ChuckNorrisFact> {
        return datasource.getFact().map { it.mapToDomain() }
     }
+
+    override fun getFilteredFact(category: String): Single<ChuckNorrisFact> {
+        return datasource.getFilteredFact(category).map { it.mapToDomain() }
+    }
 }
