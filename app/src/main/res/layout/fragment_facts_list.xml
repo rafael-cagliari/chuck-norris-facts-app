@@ -8,6 +8,16 @@
     android:background="#2C3700B3"
     tools:context=".FactsListFragment">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/test_button">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
     <Button
         android:id="@+id/test_button"
         android:layout_width="wrap_content"

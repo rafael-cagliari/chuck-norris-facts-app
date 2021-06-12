@@ -17,8 +17,8 @@ import io.reactivex.schedulers.Schedulers
 
 class FactListViewModel(context: Context) : ViewModel() {
 
+    @SuppressLint("StaticFieldLeak")
     var context = context
-
 
     var retrievedFact: ChuckNorrisFact = ChuckNorrisFact(
         id = "",
@@ -95,7 +95,11 @@ class FactListViewModel(context: Context) : ViewModel() {
             )
     }
 
-    fun readAllDB(){
+    @SuppressLint("CheckResult")
+    fun readAllDB():List<ChuckNorrisFact>{
+
+        var dbResponse:List<ChuckNorrisFact> = listOf()
+
         ReadAllDBUseCaseImpl(
            DataBaseRepositoryImpl(
                DataBaseDataSourceImpl(FactsDataBase.getDatabase(context).factsDao())
@@ -105,11 +109,12 @@ class FactListViewModel(context: Context) : ViewModel() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 {response ->
-                    Log.d("chuck norris DB", "${response}")
+                    dbResponse = response;
                 },
                 { throwable ->
                     Log.d("error retrieving DB", throwable.localizedMessage)
                 }
             )
+        return dbResponse
     }
 }
