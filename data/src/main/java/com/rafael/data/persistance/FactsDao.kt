@@ -17,7 +17,7 @@ interface FactsDao {
     @Query("DELETE FROM facts_table WHERE id==:id")
     fun deleteFactFromDB(id:String):Single<Int>
 
-    @Query("SELECT * FROM facts_table ORDER BY id ASC")
+    @Query("SELECT * FROM facts_table")
     fun readAllDB(): Single<List<ChuckNorrisFactDBItem>>
 
 }

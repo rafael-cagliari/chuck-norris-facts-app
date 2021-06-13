@@ -3,6 +3,8 @@ package com.rafael.chuck_norris.viewmodel
 import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.rafael.data.datasource.DataBaseDataSourceImpl
 import com.rafael.data.datasource.GetFactDataSourceImpl
@@ -19,6 +21,9 @@ class FactListViewModel(context: Context) : ViewModel() {
 
     @SuppressLint("StaticFieldLeak")
     var context = context
+
+    var readAllData : MutableLiveData<List<ChuckNorrisFact>> = MutableLiveData<List<ChuckNorrisFact>>()
+
 
     var retrievedFact: ChuckNorrisFact = ChuckNorrisFact(
         id = "",
@@ -96,9 +101,7 @@ class FactListViewModel(context: Context) : ViewModel() {
     }
 
     @SuppressLint("CheckResult")
-    fun readAllDB():List<ChuckNorrisFact>{
-
-        var dbResponse:List<ChuckNorrisFact> = listOf()
+    fun readAllDB(){
 
         ReadAllDBUseCaseImpl(
            DataBaseRepositoryImpl(
@@ -109,12 +112,12 @@ class FactListViewModel(context: Context) : ViewModel() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 {response ->
-                    dbResponse = response;
+                    readAllData.value=response
+                    Log.d("read DB", "${response}")
                 },
                 { throwable ->
                     Log.d("error retrieving DB", throwable.localizedMessage)
                 }
             )
-        return dbResponse
     }
 }
