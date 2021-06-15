@@ -7,7 +7,29 @@
 
     <fragment
         android:id="@+id/factsListFragment"
-        android:name="com.rafael.chuck_norris.FactsListFragment"
+        android:name="com.rafael.chuck_norris.fragments.FactsListFragment"
         android:label="fragment_facts_list"
-        tools:layout="@layout/fragment_facts_list" />
+        tools:layout="@layout/fragment_facts_list" >
+        <action
+            android:id="@+id/action_factsListFragment_to_searchFactFragment"
+            app:destination="@id/searchFactFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFactFragment"
+        android:name="com.rafael.chuck_norris.fragments.SearchFactFragment"
+        android:label="fragment_search_fact"
+        tools:layout="@layout/fragment_search_fact" >
+        <action
+            android:id="@+id/action_searchFactFragment_to_bottomSheetFragment"
+            app:destination="@id/bottomSheetFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/bottomSheetFragment"
+        android:name="com.rafael.chuck_norris.BottomSheetFragment"
+        android:label="fragment_bottom_sheet"
+        tools:layout="@layout/fragment_bottom_sheet" >
+        <action
+            android:id="@+id/action_bottomSheetFragment_to_searchFactFragment"
+            app:destination="@id/searchFactFragment" />
+    </dialog>
 </navigation>

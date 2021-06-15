@@ -17,69 +17,11 @@ import com.rafael.domain.usecase.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class FactListViewModel(context: Context) : ViewModel() {
+class FactListViewModel(var context: Context) : ViewModel() {
 
-    @SuppressLint("StaticFieldLeak")
-    var context = context
 
     var readAllData : MutableLiveData<List<ChuckNorrisFact>> = MutableLiveData<List<ChuckNorrisFact>>()
 
-
-    var retrievedFact: ChuckNorrisFact = ChuckNorrisFact(
-        id = "",
-        categories = listOf(""),
-        value = ""
-    )
-
-    @SuppressLint("CheckResult")
-    fun getFact() {
-        GetFactUseCaseImpl(
-            GetFactRepositoryImpl(
-                GetFactDataSourceImpl(RetrofitInstance())
-            )
-        ).getFact()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({ response -> retrievedFact=response; Log.d("chuck norris fact", "${response}")
-            },
-                { throwable ->
-                    Log.d("chuck norris error", throwable.localizedMessage)
-                })
-    }
-
-    @SuppressLint("CheckResult")
-    fun getFilteredFact(category: String) {
-        GetFilteredFactUseCaseImpl(
-            GetFactRepositoryImpl(
-                GetFactDataSourceImpl(RetrofitInstance())
-            )
-        ).getFilteredFact(category)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({ response ->
-              retrievedFact=response; Log.d("chuck norris fact", "${response}")},
-                { throwable ->
-                    Log.d("chuck norris error", throwable.localizedMessage)
-                })
-    }
-
-    @SuppressLint("CheckResult")
-    fun addFactToDB(fact: ChuckNorrisFact) {
-        AddFactToDBUseCaseImpl(
-            DataBaseRepositoryImpl(
-                DataBaseDataSourceImpl(FactsDataBase.getDatabase(context).factsDao())
-            )
-        ).addFactToDB(fact)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(
-                { response ->
-                    Log.d("added to db c. norris", "${response}")
-                },
-                { throwable ->
-                    Log.d("chuck norris error", throwable.localizedMessage)
-                })
-    }
 
     @SuppressLint("CheckResult")
     fun deleteFactFromDB(id:String){

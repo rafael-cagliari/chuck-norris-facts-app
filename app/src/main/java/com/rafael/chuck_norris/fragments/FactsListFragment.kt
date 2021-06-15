@@ -1,12 +1,14 @@
-package com.rafael.chuck_norris
+package com.rafael.chuck_norris.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.rafael.chuck_norris.FactItemListener
 import com.rafael.chuck_norris.adapter.FactsListAdapter
 import com.rafael.chuck_norris.databinding.FragmentFactsListBinding
 import com.rafael.chuck_norris.viewmodel.FactListViewModel
@@ -22,6 +24,7 @@ class FactsListFragment() : FactItemListener, Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         // Inflate the layout for this fragment
         val fragmentBinding = FragmentFactsListBinding.inflate(inflater, container, false)
         binding = fragmentBinding
@@ -49,14 +52,8 @@ class FactsListFragment() : FactItemListener, Fragment() {
 
 
 
-        binding.testButton.setOnClickListener {
-            factListViewModel.getFact()
-            factListViewModel.getFilteredFact("dev")
-        }
-
-        binding.addToDbButton.setOnClickListener {
-            factListViewModel.addFactToDB(factListViewModel.retrievedFact)
-            factListViewModel.readAllDB()
+        binding.addFact.setOnClickListener {
+            findNavController().navigate(FactsListFragmentDirections.actionFactsListFragmentToSearchFactFragment())
         }
 
     }
