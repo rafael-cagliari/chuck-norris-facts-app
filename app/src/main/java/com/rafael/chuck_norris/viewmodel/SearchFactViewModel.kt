@@ -3,6 +3,7 @@ package com.rafael.chuck_norris.viewmodel
 import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -20,14 +21,21 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
+import java.lang.Exception
 
 class SearchFactViewModel():ViewModel(), KoinComponent {
 
    val context:Context by inject()
 
 
-    val _category = MutableLiveData<String>()
+    var _category = MutableLiveData<String>()
     val category: LiveData<String> get() = _category
+
+    var _getFactException = MutableLiveData<String>()
+    val getFactException: LiveData<String> get() = _getFactException
+
+    var _addToDbResult = MutableLiveData<Long>()
+    val addToDbResult: LiveData<Long> get() = _addToDbResult
 
     var retrievedFact =  MutableLiveData<ChuckNorrisFact>()
 
@@ -41,10 +49,10 @@ class SearchFactViewModel():ViewModel(), KoinComponent {
         ).getFact()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({ response -> retrievedFact.value=response; Log.d("chuck norris fact", "${response}")
+            .subscribe({ response -> retrievedFact.value=response
             },
                 { throwable ->
-                    Log.d("chuck norris error", throwable.localizedMessage)
+                    _getFactException.value=throwable.localizedMessage
                 })
     }
 
@@ -58,9 +66,9 @@ class SearchFactViewModel():ViewModel(), KoinComponent {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ response ->
-                retrievedFact.value=response; Log.d("chuck norris fact", "${response}")},
+                retrievedFact.value=response},
                 { throwable ->
-                    Log.d("chuck norris error", throwable.localizedMessage)
+                    _getFactException.value=throwable.localizedMessage
                 })
     }
 
@@ -75,11 +83,17 @@ class SearchFactViewModel():ViewModel(), KoinComponent {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 { response ->
-                    Log.d("added to db c. norris", "${response}")
+                    _addToDbResult.value=response
                 },
                 { throwable ->
-                    Log.d("chuck norris error", throwable.localizedMessage)
+                    Log.d("add to db error", throwable.localizedMessage)
                 })
     }
 
+    fun reset(){
+        _category= MutableLiveData<String>()
+        _addToDbResult=MutableLiveData<Long>()
+        _getFactException=MutableLiveData<String>()
+        retrievedFact=MutableLiveData<ChuckNorrisFact>()
+    }
 }

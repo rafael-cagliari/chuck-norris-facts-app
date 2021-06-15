@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_searchFactFragment_to_bottomSheetFragment"
             app:destination="@id/bottomSheetFragment" />
+        <action
+            android:id="@+id/action_searchFactFragment_to_factsListFragment"
+            app:destination="@id/factsListFragment" />
     </fragment>
     <dialog
         android:id="@+id/bottomSheetFragment"

@@ -1,8 +1,10 @@
 package com.rafael.data.datasource
 
+import android.util.Log
 import com.rafael.data.model.ChuckNorrisResponse
 import com.rafael.data.network.RetrofitInstance
 import io.reactivex.Single
+import java.lang.Exception
 
 class GetFactDataSourceImpl(val retrorfit : RetrofitInstance): GetFactDataSource {
 

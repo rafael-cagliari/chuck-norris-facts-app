@@ -51,7 +51,6 @@ class FactsListFragment() : FactItemListener, Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-
         binding.addFact.setOnClickListener {
             findNavController().navigate(FactsListFragmentDirections.actionFactsListFragmentToSearchFactFragment())
         }

@@ -24,7 +24,7 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
         binding = fragmentBinding
 
 
-        binding.chipRandom.setOnClickListener { searchFactViewModel._category.value= binding.chipRandom.text.toString()}
+        binding.chipRandom.setOnClickListener { searchFactViewModel._category.value= null}
         binding.chipAnimal.setOnClickListener { searchFactViewModel._category.value= binding.chipAnimal.text.toString()}
         binding.chipCelebrity.setOnClickListener { searchFactViewModel._category.value= binding.chipCelebrity.text.toString()}
         binding.chipDev.setOnClickListener { searchFactViewModel._category.value= binding.chipDev.text.toString()}
