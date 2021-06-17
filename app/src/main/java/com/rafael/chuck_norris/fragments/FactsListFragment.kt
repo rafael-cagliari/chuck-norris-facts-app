@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.rafael.chuck_norris.FactItemListener
@@ -16,10 +17,10 @@ import com.rafael.chuck_norris.viewmodel.FactListViewModel
 import com.rafael.domain.model.ChuckNorrisFact
 
 
-class FactsListFragment() : FactItemListener, Fragment() {
-    lateinit var binding: FragmentFactsListBinding
-    lateinit var factListViewModel: FactListViewModel
-    lateinit var adapter: FactsListAdapter
+class FactsListFragment : FactItemListener, Fragment() {
+    private lateinit var binding: FragmentFactsListBinding
+    private lateinit var factListViewModel: FactListViewModel
+    private lateinit var adapter: FactsListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,7 +32,7 @@ class FactsListFragment() : FactItemListener, Fragment() {
         binding = fragmentBinding
         factListViewModel = context?.let { FactListViewModel(it) }!!
 
-        factListViewModel.readAllData?.observe(
+        factListViewModel.readAllData.observe(
             viewLifecycleOwner,
             { facts: List<ChuckNorrisFact> ->
                 adapter.setData(facts)
@@ -40,9 +41,15 @@ class FactsListFragment() : FactItemListener, Fragment() {
 
         //recyclerView
         adapter = FactsListAdapter(this)
-        var recyclerView: RecyclerView = binding.recyclerView
+        val recyclerView: RecyclerView = binding.recyclerView
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.addItemDecoration(
+            DividerItemDecoration(
+                this.context,
+                DividerItemDecoration.VERTICAL
+            )
+        )
 
         factListViewModel.readAllDB()
         return fragmentBinding.root
@@ -55,9 +62,10 @@ class FactsListFragment() : FactItemListener, Fragment() {
         binding.addFact.setOnClickListener {
             findNavController().navigate(FactsListFragmentDirections.actionFactsListFragmentToSearchFactFragment())
         }
-
     }
 
+
+    //functions from FactItemListener, implemented here and called by the adapter
     override fun deleteFact(id: String) {
         factListViewModel.deleteFactFromDB(id)
     }
@@ -69,9 +77,11 @@ class FactsListFragment() : FactItemListener, Fragment() {
     override fun shareFact(fact: String) {
         val sendIntent: Intent = Intent().apply {
             action = Intent.ACTION_SEND
-            putExtra(Intent.EXTRA_TEXT, "Hey! Here is a funny Chuck Norris Fact just for you: \n \n" +
-                    "${fact}\n \n " +
-                    "For more jokes, download Chuck Norris Facts at: *playstore/ChuchNorrisFactsApp* ")
+            putExtra(
+                Intent.EXTRA_TEXT, "Hey! Here is a funny Chuck Norris Fact just for you: \n \n" +
+                        "${fact}\n \n " +
+                        "For more jokes, download Chuck Norris Facts at: *playstore/ChuchNorrisFactsApp* "
+            )
             type = "text/plain"
         }
         val shareIntent = Intent.createChooser(sendIntent, null)

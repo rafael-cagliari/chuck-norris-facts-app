@@ -43,6 +43,7 @@ class SearchFactFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //general logic for UI responsiveness
 
         searchFactViewModel.retrievedFact.observe(
             viewLifecycleOwner,
@@ -71,7 +72,7 @@ class SearchFactFragment : Fragment() {
 
         searchFactViewModel.category.observe(
             viewLifecycleOwner, { category ->
-               setCategory(category)
+                setCategory(category)
             }
         )
 
@@ -81,7 +82,6 @@ class SearchFactFragment : Fragment() {
             setFactText("")
             getFilteredFact()
         }
-
 
         binding.addFactToDatabase.setOnClickListener {
             disableAddToListButton()
@@ -110,8 +110,11 @@ class SearchFactFragment : Fragment() {
         searchFactViewModel.reset()
     }
 
+
+    //functions utilized above for UI responsiveness
+
     private fun enableAddToListButton() {
-        binding.addFactToDatabase.setBackgroundColor(resources.getColor(R.color.design_default_color_primary_dark))
+        binding.addFactToDatabase.setBackgroundColor(resources.getColor(R.color.design_default_color_primary))
         binding.addFactToDatabase.isClickable = true
     }
 
@@ -121,42 +124,42 @@ class SearchFactFragment : Fragment() {
     }
 
     private fun textSizeAdjust() {
-        if(searchFactViewModel.retrievedFact.value?.value.toString().length >= 80)
-            binding.retrievedFactText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15.toFloat())
+        if (searchFactViewModel.retrievedFact.value?.value.toString().length >= 80)
+            binding.retrievedFactText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 24.toFloat())
     }
 
-    private fun progressBarSwitch(visibility:String){
-       when(visibility){
-           "gone" -> binding.progressBar.visibility=View.GONE
-           "visible" -> binding.progressBar.visibility=View.VISIBLE
-            else -> return
-       }
-    }
-
-    private fun factCardSwitch(visibility: String){
-        when(visibility){
-            "invisible" -> binding.retrievedFactCard.visibility=View.INVISIBLE
-            "visible" -> binding.retrievedFactCard.visibility=View.VISIBLE
+    private fun progressBarSwitch(visibility: String) {
+        when (visibility) {
+            "gone" -> binding.progressBar.visibility = View.GONE
+            "visible" -> binding.progressBar.visibility = View.VISIBLE
             else -> return
         }
     }
 
-    private fun setFactText(text:String){
-        binding.retrievedFactText.text=text
+    private fun factCardSwitch(visibility: String) {
+        when (visibility) {
+            "invisible" -> binding.retrievedFactCard.visibility = View.INVISIBLE
+            "visible" -> binding.retrievedFactCard.visibility = View.VISIBLE
+            else -> return
+        }
     }
 
-    private fun setCategory(category:String){
-        if (category == "") binding.selectedCategory.text = "Random"
+    private fun setFactText(text: String) {
+        binding.retrievedFactText.text = text
+    }
+
+    private fun setCategory(category: String) {
+        if (category == "") binding.selectedCategory.text = "Uncategorized"
         else binding.selectedCategory.text = category
     }
 
-    private fun getFilteredFact(){
+    private fun getFilteredFact() {
         if (searchFactViewModel.category.value == "") searchFactViewModel.getFact()
         else searchFactViewModel.category.value?.lowercase()
             ?.let { it1 -> searchFactViewModel.getFilteredFact(it1) }
     }
 
-    private fun addFactToDatabase(){
+    private fun addFactToDatabase() {
         searchFactViewModel.retrievedFact.value?.let { it1 ->
             searchFactViewModel.addFactToDB(
                 it1
@@ -164,7 +167,7 @@ class SearchFactFragment : Fragment() {
         }
     }
 
-    private fun addToDatabaseResponse(response:Long){
+    private fun addToDatabaseResponse(response: Long) {
         if (response.toInt() != -1) Toast.makeText(
             context,
             "This fact was added to your list.",

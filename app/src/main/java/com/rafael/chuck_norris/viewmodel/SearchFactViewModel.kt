@@ -28,7 +28,7 @@ class SearchFactViewModel():ViewModel(), KoinComponent {
    val context:Context by inject()
 
 
-    var _category = MutableLiveData<String>()
+    var _category = MutableLiveData<String>("")
     val category: LiveData<String> get() = _category
 
     var _getFactException = MutableLiveData<String>()
@@ -91,7 +91,7 @@ class SearchFactViewModel():ViewModel(), KoinComponent {
     }
 
     fun reset(){
-        _category= MutableLiveData<String>()
+        _category= MutableLiveData<String>("")
         _addToDbResult=MutableLiveData<Long>()
         _getFactException=MutableLiveData<String>()
         retrievedFact=MutableLiveData<ChuckNorrisFact>()

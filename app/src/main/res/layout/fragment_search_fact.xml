@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#4FD8B8FF"
     android:paddingHorizontal="15dp"
     tools:context=".fragments.SearchFactFragment">
 
@@ -12,6 +13,7 @@
         android:id="@+id/retrievedFactCard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="invisible"
         app:cardCornerRadius="20dp"
         app:layout_constraintBottom_toTopOf="@+id/addFactToDatabase"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,10 +25,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-
+            android:fontFamily="@font/heavyweight"
             android:gravity="start"
-            android:text="Chuck Norris Is ffsdfsfsdfssdfsfsfsdfGreat"
-            android:textSize="21sp"
+            android:text=""
+            android:textSize="42sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -37,21 +39,22 @@
         android:id="@+id/selectedCategory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:fontFamily="sans-serif-black"
         android:text="Random"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/returnToList"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchFact" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 
     <Button
         android:id="@+id/searchFact"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/destroy"
         android:text="SEARCH FACT"
-        app:layout_constraintBottom_toTopOf="@+id/returnToList"
+        app:layout_constraintBottom_toTopOf="@+id/selectedCategory"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -61,6 +64,7 @@
         android:layout_height="wrap_content"
         android:backgroundTint="#aaaaaa"
         android:clickable="false"
+        android:fontFamily="@font/destroy"
         android:text="Add to List"
         app:layout_constraintBottom_toTopOf="@+id/searchFact"
         app:layout_constraintEnd_toEndOf="parent"
@@ -77,15 +81,31 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <ProgressBar
+    <LinearLayout
         android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="102dp"
+        android:layout_height="116dp"
+        android:gravity="center"
+        android:orientation="vertical"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/selectedCategory" />
+        app:layout_constraintTop_toBottomOf="@+id/retrievedFactCard">
+
+        <pl.droidsonroids.gif.GifImageView
+            android:layout_width="77dp"
+            android:layout_height="70dp"
+            android:src="@drawable/dancingchuck"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/retrievedFactCard" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-black"
+            android:text="Loading..." />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

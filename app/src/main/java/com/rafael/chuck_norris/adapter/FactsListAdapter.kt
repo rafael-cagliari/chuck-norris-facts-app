@@ -1,5 +1,6 @@
 package com.rafael.chuck_norris.adapter
 
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,9 +33,10 @@ class FactsListAdapter(val factItemListener: FactItemListener): RecyclerView.Ada
         }
 
         holder.fact.text = factItem.value
+        if(factItem.value.length>=80)  holder.fact.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22.toFloat())
 
 
-        if(factItem.categories.isEmpty()) holder.category.text=""
+        if(factItem.categories[0]=="") holder.category.text="uncategorized"
         else holder.category.text=factItem.categories[0]
     }
 
