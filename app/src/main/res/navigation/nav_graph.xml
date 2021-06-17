@@ -28,7 +28,7 @@
     </fragment>
     <dialog
         android:id="@+id/bottomSheetFragment"
-        android:name="com.rafael.chuck_norris.BottomSheetFragment"
+        android:name="com.rafael.chuck_norris.fragments.BottomSheetFragment"
         android:label="fragment_bottom_sheet"
         tools:layout="@layout/fragment_bottom_sheet" >
         <action

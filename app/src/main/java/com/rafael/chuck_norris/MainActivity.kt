@@ -23,6 +23,7 @@ class MainActivity() : AppCompatActivity() {
             .findFragmentById(R.id.navigation_fragment) as NavHostFragment
         navController = navHostFragment.navController
 
+
         val mockChuckNorrisFact: ChuckNorrisFact = ChuckNorrisFact(
             id = "469879812sdasdasd",
             categories = listOf("dev"),
@@ -34,6 +35,7 @@ class MainActivity() : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
+
 }
 
 

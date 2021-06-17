@@ -1,4 +1,4 @@
-package com.rafael.chuck_norris
+package com.rafael.chuck_norris.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -24,7 +24,7 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
         binding = fragmentBinding
 
 
-        binding.chipRandom.setOnClickListener { searchFactViewModel._category.value= null}
+        binding.chipRandom.setOnClickListener { searchFactViewModel._category.value= ""}
         binding.chipAnimal.setOnClickListener { searchFactViewModel._category.value= binding.chipAnimal.text.toString()}
         binding.chipCelebrity.setOnClickListener { searchFactViewModel._category.value= binding.chipCelebrity.text.toString()}
         binding.chipDev.setOnClickListener { searchFactViewModel._category.value= binding.chipDev.text.toString()}
