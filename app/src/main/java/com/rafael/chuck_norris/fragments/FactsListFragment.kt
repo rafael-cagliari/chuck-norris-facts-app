@@ -1,5 +1,6 @@
 package com.rafael.chuck_norris.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -65,4 +66,15 @@ class FactsListFragment() : FactItemListener, Fragment() {
         factListViewModel.readAllDB()
     }
 
+    override fun shareFact(fact: String) {
+        val sendIntent: Intent = Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_TEXT, "Hey! Here is a funny Chuck Norris Fact just for you: \n \n" +
+                    "${fact}\n \n " +
+                    "For more jokes, download Chuck Norris Facts at: *playstore/ChuchNorrisFactsApp* ")
+            type = "text/plain"
+        }
+        val shareIntent = Intent.createChooser(sendIntent, null)
+        startActivity(shareIntent)
+    }
 }

@@ -22,9 +22,13 @@ class FactsListAdapter(val factItemListener: FactItemListener): RecyclerView.Ada
 
     override fun onBindViewHolder(holder: FactsViewHolder, position: Int) {
         val factItem = factsList[position]
-        holder.deletebutton.setOnClickListener {
+        holder.deleteButton.setOnClickListener {
             factItemListener.deleteFact(factItem.id)
             factItemListener.updateDataBase()
+        }
+
+        holder.shareButton.setOnClickListener {
+            factItemListener.shareFact(factItem.value)
         }
 
         holder.fact.text = factItem.value
@@ -41,7 +45,8 @@ class FactsListAdapter(val factItemListener: FactItemListener): RecyclerView.Ada
     class FactsViewHolder(private val view: View) : RecyclerView.ViewHolder(view){
         val fact:TextView = view.findViewById(R.id.fact)
         val category:TextView = view.findViewById(R.id.category)
-        val deletebutton:Button = view.findViewById(R.id.delete_button)
+        val deleteButton:Button = view.findViewById(R.id.delete_button)
+        val shareButton:Button = view.findViewById(R.id.share)
 
     }
 
