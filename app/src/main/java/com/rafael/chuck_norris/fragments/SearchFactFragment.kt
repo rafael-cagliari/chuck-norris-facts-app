@@ -126,6 +126,7 @@ class SearchFactFragment : Fragment() {
     private fun textSizeAdjust() {
         if (searchFactViewModel.retrievedFact.value?.value.toString().length >= 80)
             binding.retrievedFactText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 24.toFloat())
+        else binding.retrievedFactText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 34.toFloat())
     }
 
     private fun progressBarSwitch(visibility: String) {
@@ -149,7 +150,7 @@ class SearchFactFragment : Fragment() {
     }
 
     private fun setCategory(category: String) {
-        if (category == "") binding.selectedCategory.text = "Uncategorized"
+        if (category == "") binding.selectedCategory.text = "Random"
         else binding.selectedCategory.text = category
     }
 

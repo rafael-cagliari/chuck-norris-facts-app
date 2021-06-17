@@ -33,7 +33,8 @@ class FactsListAdapter(val factItemListener: FactItemListener): RecyclerView.Ada
         }
 
         holder.fact.text = factItem.value
-        if(factItem.value.length>=80)  holder.fact.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22.toFloat())
+        if(factItem.value.length>=80) holder.fact.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22.toFloat())
+        else holder.fact.setTextSize(TypedValue.COMPLEX_UNIT_SP, 28.toFloat())
 
 
         if(factItem.categories[0]=="") holder.category.text="uncategorized"

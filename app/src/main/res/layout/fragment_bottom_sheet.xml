@@ -18,10 +18,10 @@
 
         <com.google.android.material.chip.Chip
             android:layout_width="wrap_content"
-            android:id="@+id/chipUncategorized"
+            android:id="@+id/chipRandom"
             style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_height="wrap_content"
-            android:text="Uncateg." />
+            android:text="Random" />
 
         <com.google.android.material.chip.Chip
             android:layout_width="wrap_content"
@@ -113,13 +113,6 @@
             style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_height="wrap_content"
             android:text="Science"/>
-
-        <com.google.android.material.chip.Chip
-            android:layout_width="wrap_content"
-            android:id="@+id/chipSports"
-            style="@style/Widget.MaterialComponents.Chip.Choice"
-            android:layout_height="wrap_content"
-            android:text="Sports"/>
 
         <com.google.android.material.chip.Chip
             android:layout_width="wrap_content"

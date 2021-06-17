@@ -16,8 +16,14 @@ import com.rafael.domain.model.ChuckNorrisFact
 import com.rafael.domain.usecase.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import org.koin.core.component.KoinApiExtension
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
-class FactListViewModel(var context: Context) : ViewModel() {
+@KoinApiExtension
+class FactListViewModel():ViewModel(), KoinComponent {
+
+    val context:Context by inject()
 
 
     var readAllData : MutableLiveData<List<ChuckNorrisFact>> = MutableLiveData<List<ChuckNorrisFact>>()
@@ -34,7 +40,7 @@ class FactListViewModel(var context: Context) : ViewModel() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 { response ->
-                    Log.d("added to db c. norris", "${response}")
+                    Log.d("added to db c. norris", "$response")
                 },
                 { throwable ->
                     Log.d("chuck norris error", throwable.localizedMessage)
@@ -55,7 +61,7 @@ class FactListViewModel(var context: Context) : ViewModel() {
             .subscribe(
                 {response ->
                     readAllData.value=response
-                    Log.d("read DB", "${response}")
+                    Log.d("read DB", "$response")
                 },
                 { throwable ->
                     Log.d("error retrieving DB", throwable.localizedMessage)

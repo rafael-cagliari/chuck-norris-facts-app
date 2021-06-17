@@ -28,7 +28,7 @@
             android:fontFamily="@font/heavyweight"
             android:gravity="start"
             android:text=""
-            android:textSize="42sp"
+            android:textSize="34sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

@@ -19,14 +19,18 @@ import com.rafael.domain.usecase.GetFactUseCaseImpl
 import com.rafael.domain.usecase.GetFilteredFactUseCaseImpl
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import org.koin.core.component.KoinApiExtension
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import java.lang.Exception
 
+@KoinApiExtension
 class SearchFactViewModel():ViewModel(), KoinComponent {
 
    val context:Context by inject()
 
+    var _retrievedFact = MutableLiveData<ChuckNorrisFact>()
+    val retrievedFact: LiveData<ChuckNorrisFact> get() = _retrievedFact
 
     var _category = MutableLiveData<String>("")
     val category: LiveData<String> get() = _category
@@ -37,7 +41,7 @@ class SearchFactViewModel():ViewModel(), KoinComponent {
     var _addToDbResult = MutableLiveData<Long>()
     val addToDbResult: LiveData<Long> get() = _addToDbResult
 
-    var retrievedFact =  MutableLiveData<ChuckNorrisFact>()
+
 
 
     @SuppressLint("CheckResult")
@@ -49,7 +53,7 @@ class SearchFactViewModel():ViewModel(), KoinComponent {
         ).getFact()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({ response -> retrievedFact.value=response
+            .subscribe({ response -> _retrievedFact.value=response
             },
                 { throwable ->
                     _getFactException.value=throwable.localizedMessage
@@ -66,7 +70,7 @@ class SearchFactViewModel():ViewModel(), KoinComponent {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ response ->
-                retrievedFact.value=response},
+                _retrievedFact.value=response},
                 { throwable ->
                     _getFactException.value=throwable.localizedMessage
                 })
@@ -94,6 +98,6 @@ class SearchFactViewModel():ViewModel(), KoinComponent {
         _category= MutableLiveData<String>("")
         _addToDbResult=MutableLiveData<Long>()
         _getFactException=MutableLiveData<String>()
-        retrievedFact=MutableLiveData<ChuckNorrisFact>()
+        _retrievedFact=MutableLiveData<ChuckNorrisFact>()
     }
 }

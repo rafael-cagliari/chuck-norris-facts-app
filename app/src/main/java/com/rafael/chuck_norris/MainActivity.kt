@@ -25,18 +25,6 @@ class MainActivity() : AppCompatActivity() {
         navController = navHostFragment.navController
 
 
-        val mockChuckNorrisFact: ChuckNorrisFact = ChuckNorrisFact(
-            id = "469879812sdasdasd",
-            categories = listOf("dev"),
-            value = "chuck norris is da best"
-        )
-
-    }
-
-
-
-    override fun onSupportNavigateUp(): Boolean {
-        return navController.navigateUp() || super.onSupportNavigateUp()
     }
 
 }

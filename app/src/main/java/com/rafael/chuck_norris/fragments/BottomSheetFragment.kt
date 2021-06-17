@@ -24,7 +24,7 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
         binding = fragmentBinding
 
 
-        binding.chipUncategorized.setOnClickListener { searchFactViewModel._category.value = "" }
+        binding.chipRandom.setOnClickListener { searchFactViewModel._category.value = "" }
         binding.chipAnimal.setOnClickListener {
             searchFactViewModel._category.value = binding.chipAnimal.text.toString()
         }
@@ -64,9 +64,7 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
         binding.chipScience.setOnClickListener {
             searchFactViewModel._category.value = binding.chipScience.text.toString()
         }
-        binding.chipSports.setOnClickListener {
-            searchFactViewModel._category.value = binding.chipSports.text.toString()
-        }
+
         binding.chipTravel.setOnClickListener {
             searchFactViewModel._category.value = binding.chipTravel.text.toString()
         }
