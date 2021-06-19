@@ -11,6 +11,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.rafael.chuck_norris.R
 import com.rafael.chuck_norris.databinding.FragmentSearchFactBinding
+import com.rafael.chuck_norris.util.EspressoIdlingResource
 import com.rafael.chuck_norris.viewmodel.SearchFactViewModel
 
 
@@ -53,6 +54,8 @@ class SearchFactFragment : Fragment() {
                 setFactText(fact.value)
                 progressBarSwitch("gone")
                 textSizeAdjust()
+                //Idling Resource for UI async testing
+                EspressoIdlingResource.decrement()
             }
         )
 
@@ -67,6 +70,8 @@ class SearchFactFragment : Fragment() {
         searchFactViewModel.addToDbResult.observe(
             viewLifecycleOwner, { response ->
                 addToDatabaseResponse(response)
+                //Idling Resource for UI async testing
+                EspressoIdlingResource.decrement()
             }
         )
 
@@ -85,6 +90,8 @@ class SearchFactFragment : Fragment() {
 
         binding.addFactToDatabase.setOnClickListener {
             disableAddToListButton()
+            //Idling Resource for UI async testing
+            EspressoIdlingResource.increment()
             addFactToDatabase()
         }
 
@@ -155,6 +162,8 @@ class SearchFactFragment : Fragment() {
     }
 
     private fun getFilteredFact() {
+        //Idling Resource for UI async testing
+        EspressoIdlingResource.increment()
         if (searchFactViewModel.category.value == "") searchFactViewModel.getFact()
         else searchFactViewModel.category.value?.lowercase()
             ?.let { it1 -> searchFactViewModel.getFilteredFact(it1) }
