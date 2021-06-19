@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/categoriesChipGroup"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.BottomSheetFragment">
+
+    <com.google.android.material.chip.ChipGroup
+        android:layout_width="wrap_content"
+        style="@style/Widget.MaterialComponents.Chip.Choice"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        app:selectionRequired="true"
+        app:singleSelection="true">
+
+        <com.google.android.material.chip.Chip
+            android:layout_width="wrap_content"
+            android:id="@+id/chipRandom"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_height="wrap_content"
+            android:text="Random" />
+
+        <com.google.android.material.chip.Chip
+            android:layout_width="wrap_content"
+            android:id="@+id/chipAnimal"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_height="wrap_content"
+            android:text="Animal"/>
+
+        <com.google.android.material.chip.Chip
+            android:layout_width="wrap_content"
+            android:id="@+id/chipCelebrity"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_height="wrap_content"
+            android:text="Celebrity"/>
+
+        <com.google.android.material.chip.Chip
+            android:layout_width="wrap_content"
+            android:id="@+id/chipDev"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_height="wrap_content"
+            android:text="Dev"/>
+
+        <com.google.android.material.chip.Chip
+            android:layout_width="wrap_content"
+            android:id="@+id/chipExplicit"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_height="wrap_content"
+            android:text="Explicit"/>
+
+        <com.google.android.material.chip.Chip
+            android:layout_width="wrap_content"
+            android:id="@+id/chipFashion"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_height="wrap_content"
+            android:text="Fashion"/>
+
+        <com.google.android.material.chip.Chip
+            android:layout_width="wrap_content"
+            android:id="@+id/chipFood"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_height="wrap_content"
+            android:text="Food"/>
+
+        <com.google.android.material.chip.Chip
+            android:layout_width="wrap_content"
+            android:id="@+id/chipHistory"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_height="wrap_content"
+            android:text="History"/>
+
+        <com.google.android.material.chip.Chip
+            android:layout_width="wrap_content"
+            android:id="@+id/chipMoney"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_height="wrap_content"
+            android:text="Money"/>
+
+        <com.google.android.material.chip.Chip
+            android:layout_width="wrap_content"
+            android:id="@+id/chipMovie"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_height="wrap_content"
+            android:text="Movie"/>
+
+        <com.google.android.material.chip.Chip
+            android:layout_width="wrap_content"
+            android:id="@+id/chipMusic"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_height="wrap_content"
+            android:text="Music"/>
+
+        <com.google.android.material.chip.Chip
+            android:layout_width="wrap_content"
+            android:id="@+id/chipPolitical"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_height="wrap_content"
+            android:text="Political"/>
+
+        <com.google.android.material.chip.Chip
+            android:layout_width="wrap_content"
+            android:id="@+id/chipReligion"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_height="wrap_content"
+            android:text="Religion"/>
+
+        <com.google.android.material.chip.Chip
+            android:layout_width="wrap_content"
+            android:id="@+id/chipScience"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_height="wrap_content"
+            android:text="Science"/>
+
+        <com.google.android.material.chip.Chip
+            android:layout_width="wrap_content"
+            android:id="@+id/chipTravel"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_height="wrap_content"
+            android:text="Travel"/>
+
+    </com.google.android.material.chip.ChipGroup>
+
+</FrameLayout>
