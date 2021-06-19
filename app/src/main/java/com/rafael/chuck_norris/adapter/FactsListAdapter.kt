@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.rafael.chuck_norris.FactItemListener
 import com.rafael.chuck_norris.R
+import com.rafael.chuck_norris.util.EspressoIdlingResource
 import com.rafael.domain.model.ChuckNorrisFact
 
 class FactsListAdapter(val factItemListener: FactItemListener): RecyclerView.Adapter<FactsListAdapter.FactsViewHolder>() {
@@ -24,8 +25,11 @@ class FactsListAdapter(val factItemListener: FactItemListener): RecyclerView.Ada
     override fun onBindViewHolder(holder: FactsViewHolder, position: Int) {
         val factItem = factsList[position]
         holder.deleteButton.setOnClickListener {
+            //Idling Resource for UI async testing
+            EspressoIdlingResource.increment()
             factItemListener.deleteFact(factItem.id)
             factItemListener.updateDataBase()
+            EspressoIdlingResource.decrement()
         }
 
         holder.shareButton.setOnClickListener {

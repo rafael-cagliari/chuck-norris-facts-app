@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.rafael.chuck_norris.util.EspressoIdlingResource
 import com.rafael.data.datasource.DataBaseDataSourceImpl
 import com.rafael.data.datasource.GetFactDataSourceImpl
 import com.rafael.data.network.RetrofitInstance
