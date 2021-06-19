@@ -1,14 +1,13 @@
 package com.rafael.data.datasource
 
 import com.rafael.data.MockFilteredFact
-import com.rafael.data.datasource.GetFilteredFactDataSource
 import io.mockk.every
 import io.mockk.mockk
 import io.reactivex.Single
 import org.junit.Test
 
 class GetFilteredFactDataSourceTest {
-    private val datasource:GetFilteredFactDataSource = mockk()
+    private val datasource:GetFactDataSource = mockk()
 
     @Test
     fun getFilteredFactSuccessfully(){
