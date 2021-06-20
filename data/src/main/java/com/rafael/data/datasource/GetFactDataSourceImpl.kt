@@ -1,19 +1,17 @@
 package com.rafael.data.datasource
 
-import android.util.Log
 import com.rafael.data.model.ChuckNorrisResponse
-import com.rafael.data.network.RetrofitInstance
+import com.rafael.data.services.FactRequestService
 import io.reactivex.Single
-import java.lang.Exception
 
-class GetFactDataSourceImpl(val retrorfit : RetrofitInstance): GetFactDataSource {
+class GetFactDataSourceImpl(val service : FactRequestService): GetFactDataSource {
 
     override fun getFilteredFact(category: String): Single<ChuckNorrisResponse> {
-        return retrorfit.service.getFilteredFact(category)
+        return service.getFilteredFact(category)
     }
 
     override fun getFact(): Single<ChuckNorrisResponse> {
-       return retrorfit.service.getFact()
+       return service.getFact()
     }
 
 

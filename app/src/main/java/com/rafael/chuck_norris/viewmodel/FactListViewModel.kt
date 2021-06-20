@@ -21,21 +21,16 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
 @KoinApiExtension
-class FactListViewModel():ViewModel(), KoinComponent {
+class FactListViewModel(val deleteFactFromDBUseCase:DeleteFactFromDBUseCase,
+                        val readAllDBUseCase:ReadAllDBUseCase):ViewModel(), KoinComponent {
 
     val context:Context by inject()
-
-
     var readAllData : MutableLiveData<List<ChuckNorrisFact>> = MutableLiveData<List<ChuckNorrisFact>>()
 
 
     @SuppressLint("CheckResult")
     fun deleteFactFromDB(id:String){
-        DeleteFactFromDBUseCaseImpl(
-            DataBaseRepositoryImpl(
-                DataBaseDataSourceImpl(FactsDataBase.getDatabase(context).factsDao())
-            )
-        ).deleteFactFromDB(id)
+        deleteFactFromDBUseCase.deleteFactFromDB(id)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
@@ -50,12 +45,7 @@ class FactListViewModel():ViewModel(), KoinComponent {
 
     @SuppressLint("CheckResult")
     fun readAllDB(){
-
-        ReadAllDBUseCaseImpl(
-           DataBaseRepositoryImpl(
-               DataBaseDataSourceImpl(FactsDataBase.getDatabase(context).factsDao())
-           )
-        ).readAllDB()
+       readAllDBUseCase.readAllDB()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
