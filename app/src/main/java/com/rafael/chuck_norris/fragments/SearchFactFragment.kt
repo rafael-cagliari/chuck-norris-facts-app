@@ -13,13 +13,12 @@ import com.rafael.chuck_norris.R
 import com.rafael.chuck_norris.databinding.FragmentSearchFactBinding
 import com.rafael.chuck_norris.util.EspressoIdlingResource
 import com.rafael.chuck_norris.viewmodel.SearchFactViewModel
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 
 class SearchFactFragment : Fragment() {
 
     private lateinit var binding: FragmentSearchFactBinding
-    private val searchFactViewModel by sharedViewModel<SearchFactViewModel>()
+    private val searchFactViewModel: SearchFactViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

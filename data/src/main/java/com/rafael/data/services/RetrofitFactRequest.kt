@@ -6,7 +6,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-interface FactRequestService {
+interface RetrofitFactRequest {
 
     @GET("random")
     fun getFact(): Single<ChuckNorrisResponse>
