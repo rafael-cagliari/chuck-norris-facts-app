@@ -12,7 +12,7 @@ Click Search Fact and get a new joke. Like it? Click Add to List and save it!
 <p align="center"><img src="https://im4.ezgif.com/tmp/ezgif-4-81cb9a7db0f4.gif" alt="" width="250"></p>
 
 You can also search from a predefined category, by clicking the filter icon.
-<p align="center"><img src="https://im4.ezgif.com/tmp/ezgif-4-46d301fa9adc.gif" alt="" width="250"></p>
+<p align="center"><img src="https://im4.ezgif.com/tmp/ezgif-4-5a476c28c6b8.gif" alt="" width="250"></p>
 
 ### Share with your friends
 
