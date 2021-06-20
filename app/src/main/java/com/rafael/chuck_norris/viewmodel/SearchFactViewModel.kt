@@ -6,26 +6,22 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.rafael.data.datasource.DataBaseDataSourceImpl
-import com.rafael.data.datasource.GetFactDataSourceImpl
-import com.rafael.data.network.RetrofitInstance
-import com.rafael.data.persistance.FactsDataBase
-import com.rafael.data.repository.DataBaseRepositoryImpl
-import com.rafael.data.repository.GetFactRepositoryImpl
 import com.rafael.domain.model.ChuckNorrisFact
-import com.rafael.domain.usecase.*
+import com.rafael.domain.usecase.AddFactToDBUseCase
+import com.rafael.domain.usecase.GetFactUseCase
+import com.rafael.domain.usecase.GetFilteredFactUseCase
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import org.koin.core.component.KoinApiExtension
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
-@KoinApiExtension
-class SearchFactViewModel(val getFactUseCase: GetFactUseCase,
-                          val getFilteredFactUseCase: GetFilteredFactUseCase,
-                           val addFactToDbUseCase:AddFactToDBUseCase):ViewModel(), KoinComponent {
+class SearchFactViewModel(
+    val getFactUseCase: GetFactUseCase,
+    val getFilteredFactUseCase: GetFilteredFactUseCase,
+    val addFactToDbUseCase: AddFactToDBUseCase
+) : ViewModel(), KoinComponent {
 
-   val context:Context by inject()
+    val context: Context by inject()
 
     var _retrievedFact = MutableLiveData<ChuckNorrisFact>()
     val retrievedFact: LiveData<ChuckNorrisFact> get() = _retrievedFact
@@ -40,17 +36,16 @@ class SearchFactViewModel(val getFactUseCase: GetFactUseCase,
     val addToDbResult: LiveData<Long> get() = _addToDbResult
 
 
-
-
     @SuppressLint("CheckResult")
     fun getFact() {
-       getFactUseCase.getFact()
+        getFactUseCase.getFact()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({ response -> _retrievedFact.value=response
+            .subscribe({ response ->
+                _retrievedFact.value = response
             },
                 { throwable ->
-                    _getFactException.value=throwable.localizedMessage
+                    _getFactException.value = throwable.localizedMessage
                 })
     }
 
@@ -60,9 +55,10 @@ class SearchFactViewModel(val getFactUseCase: GetFactUseCase,
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ response ->
-                _retrievedFact.value=response},
+                _retrievedFact.value = response
+            },
                 { throwable ->
-                    _getFactException.value=throwable.localizedMessage
+                    _getFactException.value = throwable.localizedMessage
                 })
     }
 
@@ -73,17 +69,17 @@ class SearchFactViewModel(val getFactUseCase: GetFactUseCase,
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 { response ->
-                    _addToDbResult.value=response
+                    _addToDbResult.value = response
                 },
                 { throwable ->
                     Log.d("add to db error", throwable.localizedMessage)
                 })
     }
 
-    fun reset(){
-        _category= MutableLiveData<String>("")
-        _addToDbResult=MutableLiveData<Long>()
-        _getFactException=MutableLiveData<String>()
-        _retrievedFact=MutableLiveData<ChuckNorrisFact>()
+    fun reset() {
+        _category = MutableLiveData<String>("")
+        _addToDbResult = MutableLiveData<Long>()
+        _getFactException = MutableLiveData<String>()
+        _retrievedFact = MutableLiveData<ChuckNorrisFact>()
     }
 }
