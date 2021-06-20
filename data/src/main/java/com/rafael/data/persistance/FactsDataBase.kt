@@ -6,7 +6,7 @@ import androidx.room.*
 import com.rafael.data.model.ChuckNorrisFactDBItem
 
 
-@Database(entities = [ChuckNorrisFactDBItem::class], version = 1)
+@Database(entities = [ChuckNorrisFactDBItem::class], version = 1, exportSchema = false)
 @TypeConverters()
 abstract class FactsDataBase: RoomDatabase() {
 
