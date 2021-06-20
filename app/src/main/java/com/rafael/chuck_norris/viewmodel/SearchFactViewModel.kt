@@ -1,8 +1,7 @@
 package com.rafael.chuck_norris.viewmodel
-
-import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -14,12 +13,14 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
+import java.lang.Exception
 
 class SearchFactViewModel(
     val getFactUseCase: GetFactUseCase,
     val getFilteredFactUseCase: GetFilteredFactUseCase,
     val addFactToDbUseCase: AddFactToDBUseCase
 ) : ViewModel(), KoinComponent {
+
 
     val context: Context by inject()
 
@@ -51,7 +52,11 @@ class SearchFactViewModel(
 
     @SuppressLint("CheckResult")
     fun getFilteredFact(category: String) {
-        getFilteredFactUseCase.getFilteredFact(category)
+        GetFilteredFactUseCaseImpl(
+            GetFactRepositoryImpl(
+                GetFactDataSourceImpl(RetrofitInstance())
+            )
+        ).getFilteredFact(category)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ response ->
@@ -64,7 +69,11 @@ class SearchFactViewModel(
 
     @SuppressLint("CheckResult")
     fun addFactToDB(fact: ChuckNorrisFact) {
-        addFactToDbUseCase.addFactToDB(fact)
+        AddFactToDBUseCaseImpl(
+            DataBaseRepositoryImpl(
+                DataBaseDataSourceImpl(FactsDataBase.getDatabase(context).factsDao())
+            )
+        ).addFactToDB(fact)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
