@@ -21,8 +21,8 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class FactsListFragment : FactItemListener, Fragment() {
     private lateinit var binding: FragmentFactsListBinding
+    private lateinit var factListViewModel: FactListViewModel
     private lateinit var adapter: FactsListAdapter
-    private val factListViewModel by sharedViewModel<FactListViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,7 +32,7 @@ class FactsListFragment : FactItemListener, Fragment() {
         // Inflate the layout for this fragment
         val fragmentBinding = FragmentFactsListBinding.inflate(inflater, container, false)
         binding = fragmentBinding
-
+        factListViewModel = FactListViewModel()
 
         factListViewModel.readAllData.observe(
             viewLifecycleOwner,
