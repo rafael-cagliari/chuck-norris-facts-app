@@ -3,9 +3,11 @@ package com.rafael.chuck_norris.viewmodel
 import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.rafael.chuck_norris.util.EspressoIdlingResource
 import com.rafael.data.datasource.DataBaseDataSourceImpl
 import com.rafael.data.datasource.GetFactDataSourceImpl
 import com.rafael.data.network.RetrofitInstance
@@ -13,17 +15,18 @@ import com.rafael.data.persistance.FactsDataBase
 import com.rafael.data.repository.DataBaseRepositoryImpl
 import com.rafael.data.repository.GetFactRepositoryImpl
 import com.rafael.domain.model.ChuckNorrisFact
-import com.rafael.domain.usecase.*
+import com.rafael.domain.usecase.AddFactToDBUseCaseImpl
+import com.rafael.domain.usecase.GetFactUseCaseImpl
+import com.rafael.domain.usecase.GetFilteredFactUseCaseImpl
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import org.koin.core.component.KoinApiExtension
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
+import java.lang.Exception
 
 @KoinApiExtension
-class SearchFactViewModel(val getFactUseCase: GetFactUseCase,
-                          val getFilteredFactUseCase: GetFilteredFactUseCase,
-                           val addFactToDbUseCase:AddFactToDBUseCase):ViewModel(), KoinComponent {
+class SearchFactViewModel():ViewModel(), KoinComponent {
 
    val context:Context by inject()
 
@@ -44,7 +47,11 @@ class SearchFactViewModel(val getFactUseCase: GetFactUseCase,
 
     @SuppressLint("CheckResult")
     fun getFact() {
-       getFactUseCase.getFact()
+        GetFactUseCaseImpl(
+            GetFactRepositoryImpl(
+                GetFactDataSourceImpl(RetrofitInstance())
+            )
+        ).getFact()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ response -> _retrievedFact.value=response
@@ -56,7 +63,11 @@ class SearchFactViewModel(val getFactUseCase: GetFactUseCase,
 
     @SuppressLint("CheckResult")
     fun getFilteredFact(category: String) {
-        getFilteredFactUseCase.getFilteredFact(category)
+        GetFilteredFactUseCaseImpl(
+            GetFactRepositoryImpl(
+                GetFactDataSourceImpl(RetrofitInstance())
+            )
+        ).getFilteredFact(category)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ response ->
@@ -68,7 +79,11 @@ class SearchFactViewModel(val getFactUseCase: GetFactUseCase,
 
     @SuppressLint("CheckResult")
     fun addFactToDB(fact: ChuckNorrisFact) {
-        addFactToDbUseCase.addFactToDB(fact)
+        AddFactToDBUseCaseImpl(
+            DataBaseRepositoryImpl(
+                DataBaseDataSourceImpl(FactsDataBase.getDatabase(context).factsDao())
+            )
+        ).addFactToDB(fact)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
