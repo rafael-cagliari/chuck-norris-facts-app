@@ -1,7 +1,7 @@
 package com.rafael.data.network
 
 import com.rafael.data.Constants
-import com.rafael.data.services.FactRequestService
+import com.rafael.data.services.RetrofitFactRequest
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -16,7 +16,7 @@ class RetrofitInstance {
             .build()
     }
 
-    val service: FactRequestService by lazy {
-        retrofit.create(FactRequestService::class.java)
+    val service: RetrofitFactRequest by lazy {
+        retrofit.create(RetrofitFactRequest::class.java)
     }
 }
