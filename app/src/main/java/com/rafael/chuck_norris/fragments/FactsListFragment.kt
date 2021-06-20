@@ -15,13 +15,14 @@ import com.rafael.chuck_norris.adapter.FactsListAdapter
 import com.rafael.chuck_norris.databinding.FragmentFactsListBinding
 import com.rafael.chuck_norris.viewmodel.FactListViewModel
 import com.rafael.domain.model.ChuckNorrisFact
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.core.component.KoinApiExtension
 
 
 class FactsListFragment : FactItemListener, Fragment() {
     private lateinit var binding: FragmentFactsListBinding
-    private lateinit var factListViewModel: FactListViewModel
     private lateinit var adapter: FactsListAdapter
+    private val factListViewModel by sharedViewModel<FactListViewModel>()
 
     @KoinApiExtension
     override fun onCreateView(
@@ -32,7 +33,7 @@ class FactsListFragment : FactItemListener, Fragment() {
         // Inflate the layout for this fragment
         val fragmentBinding = FragmentFactsListBinding.inflate(inflater, container, false)
         binding = fragmentBinding
-        factListViewModel = FactListViewModel()
+
 
         factListViewModel.readAllData.observe(
             viewLifecycleOwner,
