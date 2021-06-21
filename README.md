@@ -9,10 +9,10 @@ Filter through 14 different categories, ranging from "Food" to "Celebrities! Sav
 
 Click Search Fact and get a new joke. Like it? Click Add to List and save it!
 
-<p align="center"><img src="https://im4.ezgif.com/tmp/ezgif-4-81cb9a7db0f4.gif" alt="" width="250"></p>
+<p align="center"><img src="https://user-images.githubusercontent.com/59263016/122779358-2ac4f900-d284-11eb-8897-50b92c9b3211.gif" alt="" width="250"></p>
 
 You can also search from a predefined category, by clicking the filter icon.
-<p align="center"><img src="https://im4.ezgif.com/tmp/ezgif-4-5a476c28c6b8.gif" alt="" width="250"></p>
+<p align="center"><img src="https://user-images.githubusercontent.com/59263016/122779456-44664080-d284-11eb-8396-3022e7007d71.gif" alt="" width="250"></p>
 
 ### Share with your friends
 
