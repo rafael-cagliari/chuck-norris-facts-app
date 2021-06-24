@@ -1,4 +1,5 @@
-<p align="center"><img src="https://scontent.fcpq2-1.fna.fbcdn.net/v/t1.15752-9/204885689_272178187995882_7888254290715255279_n.png?_nc_cat=111&ccb=1-3&_nc_sid=ae9488&_nc_ohc=er9fGcvO3RUAX9lecLJ&_nc_ht=scontent.fcpq2-1.fna&oh=77790fef685da5ca8d2b35ea9c23d6e8&oe=60D37AC3" alt="" width="200"></p>
+<p align="center"><img src="https://scontent.xx.fbcdn.net/v/t1.15752-0/s320x320/204885689_272178187995882_7888254290715255279_n.png?_nc_cat=111&ccb=1-3&_nc_sid=aee45a&_nc_ohc=OQ9GizRILRQAX9txW19&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&tp=30&oh=5eb54217d702b750c36e2926ecd17559&oe=60D8F595" alt="" width="250"></p>
+
 
 # Chuck Norris Fact App
 
