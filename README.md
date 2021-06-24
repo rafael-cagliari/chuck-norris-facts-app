@@ -13,7 +13,7 @@ Click Search Fact and get a new joke. Like it? Click Add to List and save it!
 <p align="center"><img src="https://user-images.githubusercontent.com/59263016/122779358-2ac4f900-d284-11eb-8897-50b92c9b3211.gif" alt="" width="250"></p>
 
 You can also search from a predefined category, by clicking the filter icon.
-<p align="center"><img src="https://user-images.githubusercontent.com/59263016/122779456-44664080-d284-11eb-8396-3022e7007d71.gif" alt="" width="250"></p>
+<p align="center"><img src="https://user-images.githubusercontent.com/59263016/122783444-f3584b80-d287-11eb-98b9-e5d59df73b41.gif" alt="" width="250"></p>
 
 ### Share with your friends
 
