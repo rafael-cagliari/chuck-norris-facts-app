@@ -1,4 +1,4 @@
-<p align="center"><img src="[204885689_272178187995882_7888254290715255279_n](https://user-images.githubusercontent.com/59263016/123563909-a4317f80-d78d-11eb-9493-04103d5979f9.png" alt="" width="250"></p>
+<p align="center"><img src="https://user-images.githubusercontent.com/59263016/123563909-a4317f80-d78d-11eb-9493-04103d5979f9.png" alt="" width="250"></p>
 
 
 # Chuck Norris Fact App
