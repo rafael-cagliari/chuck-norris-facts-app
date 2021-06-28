@@ -1,4 +1,4 @@
-<p align="center"><img src="https://scontent.xx.fbcdn.net/v/t1.15752-0/s320x320/204885689_272178187995882_7888254290715255279_n.png?_nc_cat=111&ccb=1-3&_nc_sid=aee45a&_nc_ohc=OQ9GizRILRQAX9txW19&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&tp=30&oh=5eb54217d702b750c36e2926ecd17559&oe=60D8F595" alt="" width="250"></p>
+<p align="center"><img src="[204885689_272178187995882_7888254290715255279_n](https://user-images.githubusercontent.com/59263016/123563909-a4317f80-d78d-11eb-9493-04103d5979f9.png" alt="" width="250"></p>
 
 
 # Chuck Norris Fact App
